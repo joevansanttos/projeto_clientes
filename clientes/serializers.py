@@ -12,13 +12,12 @@ class ClienteSerializer(serializers.ModelSerializer):
         if not nome_valido(data['nome']):
             raise serializers.ValidationError({'nome': "Nao inclua numeros nesse nome"})
         if not rg_valido(data['rg']):
-            raise serializers.ValidationError("O Rg deve ter 9 digitos")
+            raise serializers.ValidationError({'rg': "O Rg deve ter 9 digitos"})
+        if not celular_valido(data['celular']):
+            raise serializers.ValidationError({'celular': "O celular deve ter o seguinte formato 71 99783-8747"})
         return data
 
-    # def validate_celular(self, celular):
-    #     if len(celular) < 11:
-    #         raise serializers.ValidationError("O celular deve ter 11 dígitos")
-    #     return celular
+    
 
 
 
